@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>GrooveBerry WEB</title>
+    <link href="bootstrap.css" rel="stylesheet">
+
+    <style>
+    body {
+        padding:20px;
+    }
+    html {
+background:url(images/monimage.jpg) no-repeat center top;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-ms-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+    #console {
+        height: 175px;
+        width: 675px;
+        overflow: auto;
+    }
+    .username-msg {color:orange;}
+    .connect-msg {color:green;}
+    .disconnect-msg {color:red;}
+    .send-msg {color:#888}
+    </style>
+
+    <script src="js/socket.io/socket.io.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="js/server.js"></script>
+
+</head>
+
+<body>
+    <h1><img src="img/logo.png" width="75" height="75"/> GrooveBerry WEB (dev0.1)</h1>
+
+    <br/>
+
+    <p>
+        Welcome on GrooveBerry WEB interface.<br/>
+        Send one of this commands to remote control the GrooveBerry Server or just click on the corresponding button:
+        <ul>
+            <li><strong>#PLAY</strong> play the current track of the reading queue</li>
+            <li><strong>#PAUSE</strong> pause/unpause the current track of the reading queue</li>
+            <li><strong>#NEXT</strong> switch to the next track of the reading queue</li>
+            <li><strong>#PREV</strong> switch to the previous track of the reading queue</li>
+			<li><strong>#RANDOMISE</strong> randomise the reading queue <strong><font color="red">(new!)</font></strong></li>
+        </ul>
+    </p>
+
+    <br/>
+
+    <div id="console" class="well"></div>
+
+    <form onsubmit="return false;">
+        <input id="msg" class="input-xlarge" type="text" placeholder="Type something..."/>
+        <button type="button" onClick="sendMessage()" class="btn">Send</button>
+        <button type="button" onClick="sendDisconnect()" class="btn">Disconnect</button>
+        <button type="button" onClick="sendPlay()" class="btn">Play</button>
+        <button type="button" onClick="sendPause()" class="btn">Pause</button>
+        <button type="button" onClick="sendNext()" class="btn">Next</button>
+        <button type="button" onClick="sendPrev()" class="btn">Prev</button>
+		<button type="button" onClick="sendRandomise()" class="btn">Rand</button>
+    </form>
+	
+	<strong>Nicolas Symphorien (<a href="mailto:nicolas.symphorien@gmail.com">nicolas.symphorien@gmail.com</a></strong>)
+	
+</body>
+
+</html>
