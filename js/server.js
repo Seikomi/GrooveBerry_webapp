@@ -7,12 +7,18 @@ socket
 				'connect',
 				function() {
 					output('<span class="connect-msg">Client has connected to the server!</span>');
-					
+
 				});
 
 socket.on('chatevent', function(data) {
 	output('<span class="username-msg">' + data.userName + ':</span> '
 			+ data.message);
+	var stringTab = data.message.match(/^#[A-Z]*/i);
+	if (stringTab[0] == '#SONG') {
+		outputsong(data.message.substr(6));
+	} else if (stringTab[0] == '#NEXT') {
+		sendSong();
+	}
 });
 
 socket.on('disconnect', function() {
@@ -123,7 +129,8 @@ function sendSong() {
 		message : message
 	};
 	socket.emit('chatevent', jsonObject);
-	jsonObject.message
+
+
 }
 
 function output(message) {
@@ -131,4 +138,9 @@ function output(message) {
 			+ "</span>";
 	var element = $("<div>" + currentTime + " " + message + "</div>");
 	$('#console').prepend(element);
+}
+
+function outputsong(message) {
+	var element = $("<div id=\"track\">" + message + "</div>");
+	$('#track').replaceWith(element);
 }
